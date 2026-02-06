@@ -1,5 +1,5 @@
 # KritaHelper
-A CLI thing i made to help you with your art sessions (krita only btw, as you can't tell by the name), btw idk what to put here so here are the ranks of the statistics thingy (it's basically required to run with the time tracker)
+A CLI thing i made to help you with your art sessions (krita only btw, as you can't tell by the name), to run this you need to run main.py (you can run multiple instances) btw idk what to put here so here are the ranks of the statistics thingy (it's basically required to run with the time tracker)
 ## Ranks - Total time spent
 <10,000: Bronze I
 
