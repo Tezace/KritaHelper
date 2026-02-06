@@ -373,7 +373,7 @@ class Statistics:
 def main():
     ensure_data_dir()
 
-    rgbprint.gradient_print("KritaHelper v0.9 | made by Tezace", start_color="cyan", end_color="light_green")
+    rgbprint.gradient_print("KritaHelper v1.0 | made by Tezace", start_color="cyan", end_color="light_green")
     rgbprint.gradient_print("1 - Krita Time Tracker", start_color="light_green", end_color="yellow")
     rgbprint.gradient_print("2 - Random Color Palette Generator", start_color="magenta", end_color="red")
     rgbprint.gradient_print("3 - Stats + Analytics (basically required to run both this and 1)", start_color="red", end_color="yellow")
