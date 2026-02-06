@@ -376,7 +376,7 @@ def main():
     rgbprint.gradient_print("KritaHelper v0.9 | made by Tezace", start_color="cyan", end_color="light_green")
     rgbprint.gradient_print("1 - Krita Time Tracker", start_color="light_green", end_color="yellow")
     rgbprint.gradient_print("2 - Random Color Palette Generator", start_color="magenta", end_color="red")
-    rgbprint.gradient_print("3 - Stats + Analytics", start_color="red", end_color="yellow")
+    rgbprint.gradient_print("3 - Stats + Analytics (basically required to run both this and 1)", start_color="red", end_color="yellow")
     print("More coming soon!")
     print("Pro tip: you can run multiple instances of this at the same time, so you can both get a random color palette AND track your time\n")
 
