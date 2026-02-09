@@ -5,12 +5,14 @@ import json
 import random
 import colorsys
 import rgbprint
+import math
 from datetime import datetime
 
 KRITA_PROCESS_NAME = "krita.exe"
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 TIME_FILE_PATH = os.path.join(DATA_DIR, "krita_time.json")
 LOG_FILE_PATH = os.path.join(DATA_DIR, "krita_log.json")
+STREAK_FILE_PATH = os.path.join(DATA_DIR, "krita_streak.json")
 
 def ensure_data_dir():
     os.makedirs(DATA_DIR, exist_ok=True)
@@ -26,18 +28,23 @@ def clear_console():
     os.system("cls" if os.name == "nt" else "clear") # well, because if the user uses windows, it's cls for some reason
 
 class KritaTimeTracker:
-    def __init__(self, process_name: str, time_file: str, log_file: str):
+    def __init__(self, process_name: str, time_file: str, log_file: str, streak_file: str):
         self.process_name = process_name
         self.time_file = time_file
         self.log_file = log_file
+        self.streak_file = streak_file
 
         self.total_seconds = 0
+        self.streak = 0
+        self.days = 0
+        self.old_days = 0
         self.is_running = False
         self.start_time = None
 
         self.daily_log = {}
         self.load_time()
         self.load_log()
+        self.load_streak()
 
     def load_time(self):
         if os.path.exists(self.time_file):
@@ -72,6 +79,24 @@ class KritaTimeTracker:
         except IOError:
             print("Could not save log file")
 
+    def load_streak(self):
+        if os.path.exists(self.streak_file):
+            try:
+                with open(self.streak_file, "r") as f:
+                    data = json.load(f)
+                    self.streak = data.get("streak", 0)
+                    self.days = data.get("days", 0)
+                    self.old_days = data.get("days", 0)
+            except (json.JSONDecodeError, IOError):
+                self.streak = 0
+
+    def save_streak(self):
+        try:
+            with open(self.streak_file, "w") as f:
+                json.dump({"streak": self.streak, "days": math.floor(time.time()/86400)}, f, indent=2)
+        except IOError:
+            print("Could not save streak file")
+
     def is_krita_running(self) -> bool: # iterates through processes to check if kritas running
         for proc in psutil.process_iter(attrs=['name']):
             try:
@@ -80,6 +105,17 @@ class KritaTimeTracker:
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 continue
         return False
+    
+    def check_streak(self, x, y, z):
+        if (x + 1) == y:
+            return z + 1
+        if x == y:
+            return z
+        else:
+            return 0
+    
+    def update_streak(self):
+        self.streak = self.check_streak(self.old_days, math.floor(time.time()/86400), self.streak)
 
     def update_daily_log(self):
         today = datetime.now().strftime("%Y-%m-%d")
@@ -111,11 +147,14 @@ class KritaTimeTracker:
                 if self.is_running:
                     self.total_seconds = now - self.start_time
                     self.update_daily_log()
+                    self.update_streak()
+                    self.save_streak()
 
                 clear_console()
                 today_seconds = self.get_today_seconds()
                 print(f"Total time in Krita: {format_time(int(self.total_seconds))}")
                 print(f"Today's session: {format_time(today_seconds)}")
+                print(f"Current streak: {self.streak}")
                 if not self.is_running:
                     print("Waiting for Krita to start...")
 
@@ -126,10 +165,12 @@ class KritaTimeTracker:
             print("\nSaving and exiting...")
             self.save_time()
             self.save_log()
+            self.save_streak()
         except Exception as e:
             print(f"\nError: {e}")
             self.save_time()
             self.save_log()
+            self.save_streak()
 
 class ColorPaletteGenerator:
     def __init__(self, count: int = 5):
@@ -165,11 +206,13 @@ class ColorPaletteGenerator:
             time.sleep(15)
 
 class Statistics:
-    def __init__(self, time_file: str, log_file: str):
+    def __init__(self, time_file: str, log_file: str, streak_file: str):
         self.time_file = time_file
         self.log_file = log_file
+        self.streak_file = streak_file
 
         self.average = 0
+        self.streak = 0
         self.total_seconds = 0
         self.most_in_1_day = 0
         self.daily_log = {}
@@ -205,11 +248,21 @@ class Statistics:
         else:
             self.daily_log = {}
     
+    def load_streak(self):
+        if os.path.exists(self.streak_file):
+            try:
+                with open(self.streak_file, "r") as f:
+                    data = json.load(f)
+                    self.streak = data.get("streak", 0)
+            except (json.JSONDecodeError, IOError):
+                self.streak = 0
+    
     def display_stats(self):
         while True:
             clear_console()
             self.load_log()
             self.load_time()
+            self.load_streak()
             if self.average <= 150:
                 rgbprint.rgbprint(f"The average time spent per day: {format_time(self.average)} (Bronze I)", color="brown")
             elif self.average <= 225:
@@ -302,7 +355,7 @@ class Statistics:
                 rgbprint.gradient_print(f" (Prismatic II)", start_color=(75, 255, 255), end_color=(255, 75, 255))
             elif self.total_seconds <= 1900000:
                 rgbprint.gradient_print(f"Total time spent on Krita: ", start_color=(255, 150, 150), end_color=(255, 255, 150), end="")
-                rgbprint.gradient_print(f"{format_time(self.total_seconds)}", start_color=(255, 255, 150), end_color=(150, 255, 255), end="")
+                rgbprint.gradient_print(f"{format_time(self.total_seconds)}", start_color=(255 , 255, 150), end_color=(150, 255, 255), end="")
                 rgbprint.gradient_print(f" (Prismatic III)", start_color=(150, 255, 255), end_color=(255, 150, 255))
             elif self.total_seconds <= 2500000:
                 rgbprint.gradient_print(f"Total time spent on Krita: {format_time(self.total_seconds)} (Astral I)", start_color=(100, 0, 255), end_color=(255, 0, 255))
@@ -364,6 +417,57 @@ class Statistics:
             else:
                 rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day)} (Archon)", start_color="red", end_color="white")
             
+            if self.streak <= 3:
+                rgbprint.rgbprint(f"Current streak: {(self.streak):,} (Bronze I)", color="brown")
+            elif self.streak <= 5:
+                rgbprint.rgbprint(f"Current streak: {(self.streak):,} (Bronze II)", color="brown")
+            elif self.streak <= 7:
+                rgbprint.rgbprint(f"Current streak: {(self.streak):,} (Bronze III)", color="brown")
+            elif self.streak <= 9:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Silver I)", start_color="gray", end_color="white")
+            elif self.streak <= 12:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Silver II)", start_color="gray", end_color="white")
+            elif self.streak <= 15:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Silver III)", start_color="gray", end_color="white")
+            elif self.streak <= 18:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Gold I)", start_color="yellow", end_color="white")
+            elif self.streak <= 24:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Gold II)", start_color="yellow", end_color="white")
+            elif self.streak <= 30:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Gold III)", start_color="yellow", end_color="white")
+            elif self.streak <= 40:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Diamond I)", start_color="cyan", end_color="white")
+            elif self.streak <= 50:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Diamond II)", start_color="cyan", end_color="white")
+            elif self.streak <= 75:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Diamond III)", start_color="cyan", end_color="white")
+            elif self.streak <= 100:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Azure I)", start_color="blue", end_color="white")
+            elif self.streak <= 130:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Azure II)", start_color="blue", end_color="white")
+            elif self.streak <= 160:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Azure III)", start_color="blue", end_color="white")
+            elif self.streak <= 200:
+                rgbprint.gradient_print(f"Current streak: ", start_color=(255, 0, 0), end_color=(255, 255, 0), end="")
+                rgbprint.gradient_print(f"{(self.streak):,}", start_color=(255, 255, 0), end_color=(0, 255, 255), end="")
+                rgbprint.gradient_print(f" (Prismatic I)", start_color=(0, 255, 255), end_color=(255, 0, 255))
+            elif self.streak <= 250:
+                rgbprint.gradient_print(f"Current streak: ", start_color=(255, 75, 75), end_color=(255, 255, 75), end="")
+                rgbprint.gradient_print(f"{(self.streak):,}", start_color=(255, 255, 75), end_color=(75, 255, 255), end="")
+                rgbprint.gradient_print(f" (Prismatic II)", start_color=(75, 255, 255), end_color=(255, 75, 255))
+            elif self.streak <= 375:
+                rgbprint.gradient_print(f"Current streak: ", start_color=(255, 150, 150), end_color=(255, 255, 150), end="")
+                rgbprint.gradient_print(f"{(self.streak):,}", start_color=(255 , 255, 150), end_color=(150, 255, 255), end="")
+                rgbprint.gradient_print(f" (Prismatic III)", start_color=(150, 255, 255), end_color=(255, 150, 255))
+            elif self.streak <= 500:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Astral I)", start_color=(100, 0, 255), end_color=(255, 0, 255))
+            elif self.streak <= 750:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Astral II)", start_color=(175, 75, 255), end_color=(255, 75, 255))
+            elif self.streak <= 1000:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Astral III)", start_color=(250, 150, 255), end_color=(255, 150, 255))
+            else:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Archon)", start_color="red", end_color="white")
+            
             # basically keeps it running forever unless you purposely close it
             time.sleep(1)
         
@@ -373,10 +477,10 @@ class Statistics:
 def main():
     ensure_data_dir()
 
-    rgbprint.gradient_print("KritaHelper v1.0 | made by Tezace", start_color="cyan", end_color="light_green")
+    rgbprint.gradient_print("KritaHelper v1.1 | made by Tezace", start_color="cyan", end_color="light_green")
     rgbprint.gradient_print("1 - Krita Time Tracker", start_color="light_green", end_color="yellow")
     rgbprint.gradient_print("2 - Random Color Palette Generator", start_color="magenta", end_color="red")
-    rgbprint.gradient_print("3 - Stats + Analytics (basically required to run both this and 1)", start_color="red", end_color="yellow")
+    rgbprint.gradient_print("3 - Stats + Analytics (basically required to run both this and 1 since this in itself doesn't update your time, it just reads it)", start_color="red", end_color="yellow")
     print("More coming soon!")
     print("Pro tip: you can run multiple instances of this at the same time, so you can both get a random color palette AND track your time\n")
 
@@ -387,16 +491,16 @@ def main():
         return
 
     if choice == 1:
-        tracker = KritaTimeTracker(KRITA_PROCESS_NAME, TIME_FILE_PATH, LOG_FILE_PATH)
+        tracker = KritaTimeTracker(KRITA_PROCESS_NAME, TIME_FILE_PATH, LOG_FILE_PATH, STREAK_FILE_PATH)
         tracker.track()
     elif choice == 2:
         palette = ColorPaletteGenerator()
         palette.display_palette()
     elif choice == 3:
-        stats = Statistics(TIME_FILE_PATH, LOG_FILE_PATH)
+        stats = Statistics(TIME_FILE_PATH, LOG_FILE_PATH, STREAK_FILE_PATH)
         stats.display_stats()
     else:
-        print("Invalid choice, please select 1 or 2.")
+        print("Invalid choice, please select 1, 2 or 3.")
 
 
 if __name__ == "__main__":
