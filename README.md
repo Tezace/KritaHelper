@@ -134,3 +134,48 @@ A CLI thing i made to help you with your art sessions (krita only btw, as you ca
 36,000-40,800: Astral III
 
 40,800+: Archon
+
+## Ranks - Consecutive streak
+<3: Bronze I
+
+3-5: Bronze II
+
+5-7: Bronze III
+
+7-9: Silver I
+
+9-12: Silver II
+
+12-15: Silver III
+
+15-18: Gold I
+
+18-24: Gold II
+
+24-30: Gold III
+
+30-40: Diamond I
+
+40-50: Diamond II
+
+50-75: Diamond III
+
+75-100: Azure I
+
+100-130: Azure II
+
+130-160: Azure III
+
+160-200: Prismatic I
+
+200-250: Prismatic II
+
+250-375: Prismatic III
+
+375-500: Astral I
+
+500-750: Astral II
+
+750-1,000: Astral III
+
+1,000+: Archon
