@@ -100,19 +100,19 @@ A CLI thing i made to help you with your art sessions (krita only btw, as you ca
 
 18,000-20,400: Astral III
 
-5,000,000-6,250,000: Unimaginable I
+20,400-21,600: Unimaginable I
 
-6,250,000-7,500,000: Unimaginable II
+21,600-23,400: Unimaginable II
 
-7,500,000-8,750,000: Unimaginable III
+23,400-25,200: Unimaginable III
 
-8,750,000-10,000,000: Transfinite I
+25,200-27,000: Transfinite I
 
-10,000,000-12,500,000: Transfinite II
+27,000-28,800: Transfinite II
 
-12,500,000-15,000,000: Transfinite III
+28,800-30,600: Transfinite III
 
-20,400+: Archon
+30,600+: Archon
 
 ## Ranks - Most amount of time spent in 1 day
 <300: Bronze I
