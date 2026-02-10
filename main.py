@@ -311,8 +311,20 @@ class Statistics:
                 rgbprint.gradient_print(f"The average time spent per day: {format_time(self.average)} (Astral II)", start_color=(175, 75, 255), end_color=(255, 75, 255))
             elif self.average <= 20400:
                 rgbprint.gradient_print(f"The average time spent per day: {format_time(self.average)} (Astral III)", start_color=(250, 150, 255), end_color=(255, 150, 255))
+            elif self.average <= 43200:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Unimaginable I)", start_color=(255, 0, 0), end_color=(255, 255, 255))
+            elif self.average <= 46800:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Unimaginable II)", start_color=(255, 75, 75), end_color=(255, 255, 255))
+            elif self.average <= 50400:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Unimaginable III)", start_color=(255, 150, 150), end_color=(255, 255, 255))
+            elif self.average <= 54000:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Transfinite I)", start_color=(255, 255, 0), end_color=(0, 0, 255))
+            elif self.average <= 57600:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Transfinite II)", start_color=(255, 255, 75), end_color=(75, 75, 255))
+            elif self.average <= 61200:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Transfinite III)", start_color=(255, 255, 150), end_color=(150, 150, 255))
             else:
-                rgbprint.gradient_print(f"The average time spent per day: {format_time(self.average)} (Archon)", start_color="red", end_color="white") # oh boy that was a long one
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Archon)", start_color="red", end_color="cyan")
             
             # basically the same but for total seconds
             if self.total_seconds <= 10000:
@@ -363,8 +375,20 @@ class Statistics:
                 rgbprint.gradient_print(f"Total time spent on Krita: {format_time(self.total_seconds)} (Astral II)", start_color=(175, 75, 255), end_color=(255, 75, 255))
             elif self.total_seconds <= 5000000:
                 rgbprint.gradient_print(f"Total time spent on Krita: {format_time(self.total_seconds)} (Astral III)", start_color=(250, 150, 255), end_color=(255, 150, 255))
+            elif self.total_seconds <= 6250000:
+                rgbprint.gradient_print(f"Total time spent on Krita: {format_time(self.total_seconds):,} (Unimaginable I)", start_color=(255, 0, 0), end_color=(255, 255, 255))
+            elif self.total_seconds <= 7500000:
+                rgbprint.gradient_print(f"Total time spent on Krita: {format_time(self.total_seconds):,} (Unimaginable II)", start_color=(255, 75, 75), end_color=(255, 255, 255))
+            elif self.total_seconds <= 8750000:
+                rgbprint.gradient_print(f"Total time spent on Krita: {format_time(self.total_seconds):,} (Unimaginable III)", start_color=(255, 150, 150), end_color=(255, 255, 255))
+            elif self.total_seconds <= 10000000:
+                rgbprint.gradient_print(f"Total time spent on Krita: {format_time(self.total_seconds):,} (Transfinite I)", start_color=(255, 255, 0), end_color=(0, 0, 255))
+            elif self.total_seconds <= 12500000:
+                rgbprint.gradient_print(f"Total time spent on Krita: {format_time(self.total_seconds):,} (Transfinite II)", start_color=(255, 255, 75), end_color=(75, 75, 255))
+            elif self.total_seconds <= 15000000:
+                rgbprint.gradient_print(f"Total time spent on Krita: {format_time(self.total_seconds):,} (Transfinite III)", start_color=(255, 255, 150), end_color=(150, 150, 255))
             else:
-                rgbprint.gradient_print(f"Total time spent on Krita: {format_time(self.total_seconds)} (Archon)", start_color="red", end_color="white")
+                rgbprint.gradient_print(f"Total time spent on Krita: {format_time(self.total_seconds):,} (Archon)", start_color="red", end_color="cyan")
             
             if self.most_in_1_day <= 300:
                 rgbprint.rgbprint(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day)} (Bronze I)", color="brown")
@@ -414,8 +438,20 @@ class Statistics:
                 rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day)} (Astral II)", start_color=(175, 75, 255), end_color=(255, 75, 255))
             elif self.most_in_1_day <= 40800:
                 rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day)} (Astral III)", start_color=(250, 150, 255), end_color=(255, 150, 255))
+            elif self.most_in_1_day <= 43200:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day):,} (Unimaginable I)", start_color=(255, 0, 0), end_color=(255, 255, 255))
+            elif self.most_in_1_day <= 46800:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day):,} (Unimaginable II)", start_color=(255, 75, 75), end_color=(255, 255, 255))
+            elif self.most_in_1_day <= 50400:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day):,} (Unimaginable III)", start_color=(255, 150, 150), end_color=(255, 255, 255))
+            elif self.most_in_1_day <= 54000:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day):,} (Transfinite I)", start_color=(255, 255, 0), end_color=(0, 0, 255))
+            elif self.most_in_1_day <= 57600:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day):,} (Transfinite II)", start_color=(255, 255, 75), end_color=(75, 75, 255))
+            elif self.most_in_1_day <= 61200:
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day):,} (Transfinite III)", start_color=(255, 255, 150), end_color=(150, 150, 255))
             else:
-                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day)} (Archon)", start_color="red", end_color="white")
+                rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.most_in_1_day):,} (Archon)", start_color="red", end_color="cyan")
             
             if self.streak <= 3:
                 rgbprint.rgbprint(f"Current streak: {(self.streak):,} (Bronze I)", color="brown")
@@ -465,8 +501,20 @@ class Statistics:
                 rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Astral II)", start_color=(175, 75, 255), end_color=(255, 75, 255))
             elif self.streak <= 1000:
                 rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Astral III)", start_color=(250, 150, 255), end_color=(255, 150, 255))
+            elif self.streak <= 1500:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Unimaginable I)", start_color=(255, 0, 0), end_color=(255, 255, 255))
+            elif self.streak <= 2000:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Unimaginable II)", start_color=(255, 75, 75), end_color=(255, 255, 255))
+            elif self.streak <= 2500:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Unimaginable III)", start_color=(255, 150, 150), end_color=(255, 255, 255))
+            elif self.streak <= 3300:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Transfinite I)", start_color=(255, 255, 0), end_color=(0, 0, 255))
+            elif self.streak <= 4100:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Transfinite II)", start_color=(255, 255, 75), end_color=(75, 75, 255))
+            elif self.streak <= 5000:
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Transfinite III)", start_color=(255, 255, 150), end_color=(150, 150, 255))
             else:
-                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Archon)", start_color="red", end_color="white")
+                rgbprint.gradient_print(f"Current streak: {(self.streak):,} (Archon)", start_color="red", end_color="cyan")
             
             # basically keeps it running forever unless you purposely close it
             time.sleep(1)
@@ -477,7 +525,7 @@ class Statistics:
 def main():
     ensure_data_dir()
 
-    rgbprint.gradient_print("KritaHelper v1.1 | made by Tezace", start_color="cyan", end_color="light_green")
+    rgbprint.gradient_print("KritaHelper v1.0 | made by Tezace", start_color="cyan", end_color="light_green")
     rgbprint.gradient_print("1 - Krita Time Tracker", start_color="light_green", end_color="yellow")
     rgbprint.gradient_print("2 - Random Color Palette Generator", start_color="magenta", end_color="red")
     rgbprint.gradient_print("3 - Stats + Analytics (basically required to run both this and 1 since this in itself doesn't update your time, it just reads it)", start_color="red", end_color="yellow")
