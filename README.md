@@ -113,7 +113,7 @@ A CLI thing i made to help you with your art sessions (krita only btw, as you ca
 12,500,000-15,000,000: Transfinite III
 
 20,400+: Archon
-ill finish the rest later when im done fixing the code
+
 ## Ranks - Most amount of time spent in 1 day
 <300: Bronze I
 
@@ -157,7 +157,19 @@ ill finish the rest later when im done fixing the code
 
 36,000-40,800: Astral III
 
-40,800+: Archon
+40,800-43,200: Unimaginable I
+
+43,200-46,800: Unimaginable II
+
+46,800-50,400: Unimaginable III
+
+50,400-54,000: Transfinite I
+
+54,000-57,600: Transfinite II
+
+57,600-61,200: Transfinite III
+
+61,200+: Archon
 
 ## Ranks - Consecutive streak
 <3: Bronze I
@@ -202,4 +214,16 @@ ill finish the rest later when im done fixing the code
 
 750-1,000: Astral III
 
-1,000+: Archon
+1,000-1,500: Unimaginable I
+
+1,500-2,000: Unimaginable II
+
+2,000-2,500: Unimaginable III
+
+2,500-3,300: Transfinite I
+
+3,300-4,100: Transfinite II
+
+4,100-5,000: Transfinite III
+
+5,000+: Archon
