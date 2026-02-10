@@ -311,17 +311,17 @@ class Statistics:
                 rgbprint.gradient_print(f"The average time spent per day: {format_time(self.average)} (Astral II)", start_color=(175, 75, 255), end_color=(255, 75, 255))
             elif self.average <= 20400:
                 rgbprint.gradient_print(f"The average time spent per day: {format_time(self.average)} (Astral III)", start_color=(250, 150, 255), end_color=(255, 150, 255))
-            elif self.average <= 43200:
+            elif self.average <= 21600:
                 rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Unimaginable I)", start_color=(255, 0, 0), end_color=(255, 255, 255))
-            elif self.average <= 46800:
+            elif self.average <= 23400:
                 rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Unimaginable II)", start_color=(255, 75, 75), end_color=(255, 255, 255))
-            elif self.average <= 50400:
+            elif self.average <= 25200:
                 rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Unimaginable III)", start_color=(255, 150, 150), end_color=(255, 255, 255))
-            elif self.average <= 54000:
+            elif self.average <= 27000:
                 rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Transfinite I)", start_color=(255, 255, 0), end_color=(0, 0, 255))
-            elif self.average <= 57600:
+            elif self.average <= 28800:
                 rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Transfinite II)", start_color=(255, 255, 75), end_color=(75, 75, 255))
-            elif self.average <= 61200:
+            elif self.average <= 30600:
                 rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Transfinite III)", start_color=(255, 255, 150), end_color=(150, 150, 255))
             else:
                 rgbprint.gradient_print(f"Most amount of time spent in 1 day: {format_time(self.average):,} (Archon)", start_color="red", end_color="cyan")
