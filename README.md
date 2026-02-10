@@ -43,7 +43,19 @@ A CLI thing i made to help you with your art sessions (krita only btw, as you ca
 
 3,750,000-5,000,000: Astral III
 
-5,000,000+: Archon
+5,000,000-6,250,000: Unimaginable I
+
+6,250,000-7,500,000: Unimaginable II
+
+7,500,000-8,750,000: Unimaginable III
+
+8,750,000-10,000,000: Transfinite I
+
+10,000,000-12,500,000: Transfinite II
+
+12,500,000-15,000,000: Transfinite III
+
+15,000,000+: Archon
 
 ## Ranks - Average time spent per day in seconds
 <150: Bronze I
@@ -88,8 +100,20 @@ A CLI thing i made to help you with your art sessions (krita only btw, as you ca
 
 18,000-20,400: Astral III
 
-20,400+: Archon
+5,000,000-6,250,000: Unimaginable I
 
+6,250,000-7,500,000: Unimaginable II
+
+7,500,000-8,750,000: Unimaginable III
+
+8,750,000-10,000,000: Transfinite I
+
+10,000,000-12,500,000: Transfinite II
+
+12,500,000-15,000,000: Transfinite III
+
+20,400+: Archon
+ill finish the rest later when im done fixing the code
 ## Ranks - Most amount of time spent in 1 day
 <300: Bronze I
 
