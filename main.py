@@ -525,11 +525,11 @@ class Statistics:
 def main():
     ensure_data_dir()
 
-    rgbprint.gradient_print("KritaHelper v1.0 | made by Tezace", start_color="cyan", end_color="light_green")
+    rgbprint.gradient_print("KritaHelper v1.2.1 | made by Tezace", start_color="cyan", end_color="light_green")
     rgbprint.gradient_print("1 - Krita Time Tracker", start_color="light_green", end_color="yellow")
     rgbprint.gradient_print("2 - Random Color Palette Generator", start_color="magenta", end_color="red")
     rgbprint.gradient_print("3 - Stats + Analytics (basically required to run both this and 1 since this in itself doesn't update your time, it just reads it)", start_color="red", end_color="yellow")
-    print("More coming soon!")
+    print("More coming soon! :D")
     print("Pro tip: you can run multiple instances of this at the same time, so you can both get a random color palette AND track your time\n")
 
     try:
